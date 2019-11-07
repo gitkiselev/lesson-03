@@ -18,11 +18,27 @@ const Header = styled.div`
     }
 `
 
-const AppHeader = () => {
+const AppHeader = ({liked, allPosts}) => {
+    let GetNoun = (number, one, two, five) => {
+        number = Math.abs(number);
+        number %= 100;
+        if (number >= 5 && number <= 20) {
+            return five;
+        }
+        number %= 10;
+        if (number === 1) {
+            return one;
+        }
+        if (number >= 2 && number <= 4) {
+            return two;
+        }
+        return five;
+    } 
+
     return (
         <Header>
             <h1>Andrei Kiselev</h1>
-            <h2>5 записей, из них понравилось 0</h2>
+            <h2>{allPosts} {GetNoun(allPosts, 'запись', 'записи', 'записей')}, из них понравилось {liked}</h2>
         </Header>
     )
 }

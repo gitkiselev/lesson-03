@@ -2,7 +2,7 @@ import React from 'react';
 import PostListItem from '../post-list-item';
 import './post-list.css';
 let uuid = require('react-native-uuid');
-const PostList = ({posts, onDelete}) => {
+const PostList = ({posts, onDelete, onToggleItemProperty}) => {
     
     const elements = posts.map((item) => {
         const {id, ...itemProps} = item;
@@ -11,6 +11,8 @@ const PostList = ({posts, onDelete}) => {
                 <PostListItem
                      {...itemProps}
                      onDelete={() => onDelete(id)}
+                     onToggleImportant={() => onToggleItemProperty(id, 'important')}
+                     onToggleLiked={() => onToggleItemProperty(id, 'like')}
                      />
             </li>
         )
